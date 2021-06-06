@@ -20,7 +20,9 @@ class StartRequest(Event):
         StartRequest.request_id += 1
 
     def new_timestamp(self, timestamp, config):
-        return timestamp + self.exp_delay(config.userRequestRate)
+        new_time = timestamp + self.exp_delay(config.userRequestRate)
+        self.request_data.init_timestamp = new_time
+        return new_time
 
     def handle_event(self, timeline, max_requests=100000):
         timeout = Timeout(self.request_id, self.content,
