@@ -17,11 +17,11 @@ class Timeline:
         self.timelist.append(event)
         self.sort()
 
-    def removeTimeouts(self, content):
+    def remove_timeouts(self, content):
         self.timelist = list(filter(lambda c: c is Timeout and c.content is not content , self.timelist))
 
-    def removeRequest(self, requestId):
+    def remove_request(self, requestId):
         self.timelist = list(filter(lambda c: c.request.Id is not requestId , self.timelist))
     
-    def removeRequestContent(self, content):
+    def remove_content(self, content):
         self.timelist = list(filter(lambda c: c.request.content is not content, self.timelist))

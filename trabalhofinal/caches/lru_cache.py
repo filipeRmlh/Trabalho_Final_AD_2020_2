@@ -4,7 +4,7 @@ class LRUCache(Cache):
   def __init__(self, capacity, values = None):
         super().__init__(capacity, values)
 
-  def checkValue(self, value):
+  def check_value(self, value):
     for element in self.content:
       if value == element:
         self.content = list(filter(lambda c: c is not element ,self.content)) #send element to last position
@@ -12,13 +12,13 @@ class LRUCache(Cache):
         return True
     return False
 
-  def SendValue(self, value):
-    containsValue = False
+  def send_value(self, value):
+    contains_value = False
     for element in self.content:
       if value == element:
-        containsValue = True
+        contains_value = True
     
-    if not containsValue:
+    if not contains_value:
       self.content.append(value)
 
     if len(self.content) > self.capacity:

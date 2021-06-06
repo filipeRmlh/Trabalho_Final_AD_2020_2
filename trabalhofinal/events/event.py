@@ -2,11 +2,10 @@ import numpy as np
 from abc import ABC, abstractmethod
 
 class Event(ABC):
-    def __init__(self, request_id, content, timestamp, config):
-        self.request_id = request_id
-        self.content = content
-        self.
+    def __init__(self, request_data, timestamp, config, cache = None):
         self.timestamp = self.new_timestamp(timestamp, config)
+        self.request_data = request_data
+        self.cache = cache
         self.config = config
     
     @abstractmethod

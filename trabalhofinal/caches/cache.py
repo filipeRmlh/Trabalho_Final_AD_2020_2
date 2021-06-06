@@ -13,9 +13,9 @@ class Cache():
           self.content = []
 
     @abstractmethod
-    def checkValue(self, value):
+    def check_value(self, value):
         pass
 
     @abstractmethod
-    def sendValue(self,value):
+    def send_value(self,value):
         pass

@@ -1,19 +1,19 @@
+from .cache_2_server_2_cache import Cache2Server2Cache
 from .event import Event
-from .timeout import Timeout
 from numpy import random
 
 class Client2Cache(Event):
-    def __init__(self, dataflow, timestamp, config):
-        super().__init__(dataflow.request_id, dataflow.content, timestamp, config)
+    def __init__(self, request_data, timestamp, config, cache = None):
+        super().__init__(request_data, timestamp, config, cache)
 
-    def testLoss(self):
+    def test_loss(self):
         return random.random() > self.config.client2CacheP
 
     def new_timestamp(self, timestamp, config):
         return timestamp + self.exp_delay(config.client2CacheRate)
 
     def handle_event(self, timeline):
-        if self.testLoss():
+        if self.test_loss():
             return
-        timeout = Timeout(self.request_id, self.content, self.timestamp, self.config)
-        timeline.insert(timeout)
+        cache2Server2Cache = Cache2Server2Cache(self.request_id, self.content, self.timestamp, self.config)
+        timeline.insert(cache2Server2Cache)

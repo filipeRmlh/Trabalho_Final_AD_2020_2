@@ -4,14 +4,14 @@ class FIFOCache(Cache):
     def __init__(self, capacity, values = None):
         super().__init__(capacity, values)
 
-    def checkValue(self, value):
+    def check_value(self, value):
       for element in self.content:
         if value == element:
           return True
 
       return False
 
-    def SendValue(self,value):
+    def send_value(self, value):
       self.content.append(value)
 
       if len(self.content) > self.capacity:
