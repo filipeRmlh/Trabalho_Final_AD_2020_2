@@ -9,7 +9,7 @@ class Event(ABC):
         self.cache = cache
         self.config = config
         self.timestamp = self.new_timestamp(timestamp, config)
-        #print("Creating Type: ",self.__class__.__name__, "Request: ", self.request_data.request_id, "Timestamp: " ,self.timestamp)
+        config.logger.debug(f'Creating Type: {self.__class__.__name__}; Request: {self.request_data.request_id}; "Timestamp: {self.timestamp}')
     
 
     @abstractmethod

@@ -6,9 +6,10 @@ class TagTypes(Enum):
     NO_DEBUG=0
     ERROR=1
     WARN=2
-    INFO=3
-    DEBUG=4
-    SUCCESS=5
+    SUCCESS=3
+    INFO=4
+    DEBUG=5
+    
 
 class Logger:
     def __init__(self, debugLevel=TagTypes.NO_DEBUG):
@@ -35,10 +36,11 @@ class Logger:
 
     def info(self, msg):
         self.msg(msg, TagTypes.INFO)
+        
+    def debug(self, msg):
+        self.msg(msg)
 
     def msg(self, msg, TAG=TagTypes.DEBUG):
-        if TAG.value >= self.debugLevel.value:
+        if TAG.value <= self.debugLevel.value:
             tagColor = self.mapColorTag(TAG)
             print(color("["+TAG.name+"]: ", tagColor) + msg)
-
-logger = Logger()

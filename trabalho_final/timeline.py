@@ -1,4 +1,3 @@
-from trabalho_final.logger import logger
 from .events.start_request import StartRequest
 from .events.timeout import Timeout
 

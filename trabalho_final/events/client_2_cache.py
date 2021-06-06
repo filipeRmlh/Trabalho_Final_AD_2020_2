@@ -23,6 +23,7 @@ class Client2Cache(Event):
             return
 
         if self.cache.check_value(self.request_data.content):
+            self.request_data.cache_hit = True
             cache2client = Cache2Client(self.request_data,self.timestamp, self.config, self.cache)
             timeline.insert(cache2client)
         else:
