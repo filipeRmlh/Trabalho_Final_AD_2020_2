@@ -1,0 +1,14 @@
+{
+    "DataTypes": "cache_hits",
+    "Client2CacheRate": "inf",
+    "Client2CacheP": 1,
+    "TimeoutRate": 0,
+    "Cache2Server2CacheRate": "inf",
+    "AlternativeServerRate": 1,
+    "UserRequestRate" : 1,
+    "ContentSize" : 3,
+    "Caches" : [
+        ["fifo", 2],
+        ["fifo", 2]
+    ]
+}

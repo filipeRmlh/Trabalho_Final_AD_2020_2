@@ -15,7 +15,8 @@ class Config:
         userRequestRate = None,
         contentSize = None,
         caches = None,
-        logger = None
+        logger = None,
+        dataTypes = None
     ):
         config = self.parse(file_path)
         #mi
@@ -35,14 +36,16 @@ class Config:
         #M
         self.caches = config['Caches'] if caches is None else caches
 
+        self.dataTypes = config['DataTypes'] if dataTypes is None else dataTypes
+
         self.logger = logger
 
     
     def parse_inf(self, content):
         return inf if content == 'inf' else content
 
-    def parse(self, file_path='default_config.json'):
-        file = open(file_path, 'r')
+    def parse(self, config_name):
+        file = open(f'configs/{config_name}.json', 'r')
         config = json.load(file)
         file.close()
         return config

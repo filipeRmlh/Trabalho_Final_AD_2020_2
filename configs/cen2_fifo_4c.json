@@ -1,0 +1,14 @@
+{
+    "DataTypes": "cache_hits",
+    "Client2CacheRate": "inf",
+    "Client2CacheP": 0.9,
+    "TimeoutRate": 0,
+    "Cache2Server2CacheRate": "inf",
+    "AlternativeServerRate": 1,
+    "UserRequestRate" : 1,
+    "ContentSize" : 4,
+    "Caches" : [
+        ["lru", 2],
+        ["lru", 2]
+    ]
+}
