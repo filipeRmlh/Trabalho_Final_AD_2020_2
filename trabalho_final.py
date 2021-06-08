@@ -93,9 +93,8 @@ def main():
         results = parallelMeans(config=config, nRequests=args['requests'], nMeans=args['means'])
         
         printStats(getStats(results))
-
-        plotSamples(results)
         timeend = time.time()
+        plotSamples(results)
         logger.success(f'Requests executed with success in {timeend-timeinit} seconds')
     except Exception as e:
         logger.error(f'A error occurred:\n\t {e}')
