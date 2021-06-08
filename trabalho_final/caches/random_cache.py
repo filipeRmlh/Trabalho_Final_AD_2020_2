@@ -16,6 +16,6 @@ class RandomCache(Cache):
     if not self.check_value(value):
       if len(self.content) == self.capacity:
         random_index = random.randint(0, self.capacity)
-        self.content = self.content.pop(random_index)
+        self.content.pop(random_index)
 
     self.content.append(value)
