@@ -1,14 +1,14 @@
 {
-    "DataTypes": "cache_hits",
-    "Client2CacheRate": "inf",
+    "DataTypes": "delays",
+    "Client2CacheRate": 1,
     "Client2CacheP": 0.9,
-    "TimeoutRate": 0,
+    "TimeoutRate": 1,
     "Cache2Server2CacheRate": "inf",
     "AlternativeServerRate": 1,
     "UserRequestRate" : 1,
     "ContentSize" : 4,
     "Caches" : [
-        ["lru", 2],
-        ["lru", 2]
+        ["fifo", 2],
+        ["fifo", 2]
     ]
 }
