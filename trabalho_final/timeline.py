@@ -33,8 +33,9 @@ class Timeline:
         while index < len(self.timelist):
             evt = self.timelist[index]
             if isinstance(evt, Timeout) and evt.request_data.content is current_event.request_data.content:
-                evt.request_data.end_timestamp = current_event.timestamp
-                del self.timelist[index]
+                if current_event.timestamp > evt.request_data.init_timestamp:
+                    evt.request_data.end_timestamp = current_event.timestamp
+                    del self.timelist[index]
             index += 1
 
 
