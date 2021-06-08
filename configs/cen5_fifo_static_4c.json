@@ -5,10 +5,10 @@
     "TimeoutRate": 1,
     "Cache2Server2CacheRate": 1,
     "AlternativeServerRate": 1,
-    "UserRequestRate" : 0.001,
-    "ContentSize" : 3,
+    "UserRequestRate" : 1,
+    "ContentSize" : 4,
     "Caches" : [
-        ["random", 2],
-        ["random", 2]
+        ["static", 2],
+        ["fifo", 2]
     ]
 }

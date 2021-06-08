@@ -5,10 +5,10 @@
     "TimeoutRate": 1,
     "Cache2Server2CacheRate": 1,
     "AlternativeServerRate": 1,
-    "UserRequestRate" : 0.001,
+    "UserRequestRate" : 1,
     "ContentSize" : 3,
     "Caches" : [
-        ["lru", 2],
+        ["random", 2],
         ["lru", 2]
     ]
 }
