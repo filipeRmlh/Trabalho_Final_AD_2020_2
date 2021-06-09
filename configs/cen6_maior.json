@@ -1,0 +1,14 @@
+{
+    "DataTypes": "delays",
+    "Client2CacheRate": 1,
+    "Client2CacheP": 0.9,
+    "TimeoutRate": 0.01,
+    "Cache2Server2CacheRate": 0.1,
+    "AlternativeServerRate": 0.1,
+    "UserRequestRate" : 0.0001,
+    "ContentSize" : 3,
+    "Caches" : [
+        ["lru", 2],
+        ["lru", 2]
+    ]
+}
