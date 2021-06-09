@@ -67,10 +67,10 @@ Valores de **DataTypes**:
 
 Valores de **tipos de cache**:
 
-* `fifo`: coletar a contagem de cache hit de cada request 
-* `lru`: coletar a demora de cada request
-* `static`: coletar o tempo de inicio de cada request
-* `random`: coletar o tempo de finalização de cada request
+* `fifo`: Cache do tipo FIFO 
+* `lru`: Cache do tipo LRU
+* `static`: Cache do tipo estática
+* `random`: Cache do tipo random
 
 #### Exemplo de configuração:
 Cenário 1 - FIFO - 3 conteúdos
