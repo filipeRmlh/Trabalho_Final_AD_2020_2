@@ -7,6 +7,7 @@ import sys
 import time
 import argparse
 import traceback
+import math
 import numpy as np
 from trabalho_final.logger import Logger, TagTypes
 from trabalho_final.caches.static_cache import StaticCache
@@ -38,7 +39,8 @@ def getCaches(config):
 def user(config, nRequests = 10):
     timeline = Timeline(config)
     StartRequest.request_id = 0
-    timeline.insert(StartRequest(config, max_requests=nRequests, cache_list=getCaches(config)))
+    cache_list = getCaches(config)
+    timeline.insert(StartRequest(config, max_requests=nRequests, cache_list=cache_list))
     
     while len(timeline.timelist) > 0:
         event = timeline.advanceTime()
@@ -58,10 +60,8 @@ def argParser():
     return vars(ap.parse_args())
 
 
-def getMeans(means, config, nRequests=10, nMeans=4000,  nGroups=1):
-    iterations = int(nMeans/nGroups) if int(nMeans/nGroups) > 0 else 1
-    
-    for _ in range(iterations):
+def getMeans(means, config, nRequests=10, nMeans=4000):  
+    for _ in range(nMeans):
         requests_data = user(config, nRequests)
         requests_colleted_data = RequestData.getDataFunction(config.dataTypes, requests_data)
         mean = np.mean(requests_colleted_data)
@@ -72,10 +72,18 @@ def parallelMeans(config, nRequests=10, nMeans=4000, nGroups=multiprocessing.cpu
     processList = []
     manager =  multiprocessing.Manager()
     means = manager.list()
+
+    Q = math.floor(nMeans/nGroups)
+    R = nMeans % nGroups
+    
     for _ in range(nGroups-1):
-        process = Process(target=getMeans, args=(means, config, nRequests, nMeans, nGroups,))
+        process = Process(target=getMeans, args=(means, config, nRequests, Q, ))
         process.start()
         processList.append(process)
+    
+    process = Process(target=getMeans, args=(means, config, nRequests, Q+R, ))
+    process.start()
+    processList.append(process)
         
     for process in processList:
         process.join()
@@ -89,9 +97,7 @@ def main():
     config = Config(args['config'], logger=logger)
     try:
         timeinit = time.time()
-       
         results = parallelMeans(config=config, nRequests=args['requests'], nMeans=args['means'])
-        
         printStats(getStats(results))
         timeend = time.time()
         plotSamples(results)

@@ -14,7 +14,7 @@ class StartRequest(Event):
     def __init__(self, config, timestamp=0, cache_list=[], max_requests = 10000):
         request_data = RequestData(
             request_id=StartRequest.request_id,
-            content=random.randint(config.contentSize)
+            content=random.randint(1,config.contentSize+1)
         )
         super().__init__(request_data, timestamp, config)
         self.cache_list = cache_list
